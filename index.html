@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --cream: #FAF7F2;
     --warm-white: #FFFFFF;
@@ -20,329 +19,57 @@
     --text-light: #A08070;
     --border: #E2D4CC;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    min-height: 100vh;
-  }
+  .hero { background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blush), var(--rose), var(--blush)); }
+  .hero-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 1rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 300; color: var(--text-dark); line-height: 1.1; margin-bottom: 0.5rem; }
+  .hero-title em { font-style: italic; color: var(--rose); }
+  .hero-sub { font-size: 14px; color: var(--text-light); letter-spacing: 0.04em; margin-top: 1rem; }
+  .hero-divider { width: 60px; height: 1px; background: var(--blush); margin: 1.5rem auto 0; }
 
-  /* HERO */
-  .hero {
-    background: var(--warm-white);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 2rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); text-align: center; padding: 3rem 0 2rem; }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--blush), var(--rose), var(--blush));
-  }
+  .talent-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding-bottom: 3rem; }
+  .talent-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .talent-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(139, 90, 68, 0.1); }
 
-  .hero-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 1rem;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    font-weight: 300;
-    color: var(--text-dark);
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--rose);
-  }
-
-  .hero-sub {
-    font-size: 14px;
-    color: var(--text-light);
-    letter-spacing: 0.04em;
-    margin-top: 1rem;
-  }
-
-  .hero-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--blush);
-    margin: 1.5rem auto 0;
-  }
-
-  /* MAIN LAYOUT */
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* SECTION LABEL */
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    text-align: center;
-    padding: 3rem 0 2rem;
-  }
-
-  /* TALENT CARDS */
-  .talent-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding-bottom: 3rem;
-  }
-
-  .talent-card {
-    background: var(--warm-white);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .talent-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(139, 90, 68, 0.1);
-  }
-
-  .photo-slot {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: #F0E9E3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .photo-slot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .photo-slot-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .photo-icon {
-    width: 40px;
-    height: 40px;
-    border: 1.5px solid var(--blush);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .photo-icon svg { width: 18px; height: 18px; stroke: var(--rose); fill: none; stroke-width: 1.5; }
-
-  .photo-hint {
-    font-size: 12px;
-    color: var(--text-light);
-    text-align: center;
-    max-width: 160px;
-    line-height: 1.5;
-  }
+  .photo-slot { width: 100%; aspect-ratio: 3/4; background: #F0E9E3; border-bottom: 1px solid var(--border); overflow: hidden; }
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .card-body { padding: 1.5rem; }
+  .card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.15rem; }
+  .card-role { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); margin-bottom: 1.25rem; }
+  .stats { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .stat { font-size: 12px; color: var(--text-mid); background: var(--cream); border: 1px solid var(--border); border-radius: 2px; padding: 4px 10px; }
+  .card-bio { font-size: 14px; line-height: 1.75; color: var(--text-mid); }
 
-  .card-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: var(--text-dark);
-    margin-bottom: 0.15rem;
-  }
-
-  .card-role {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 1.25rem;
-  }
-
-  .stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .stat {
-    font-size: 12px;
-    color: var(--text-mid);
-    background: var(--cream);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 4px 10px;
-  }
-
-  .card-bio {
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--text-mid);
-  }
-
-  /* PHOTO GALLERY ROW */
   .gallery-section { padding-bottom: 3rem; }
+  .gallery-label { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1rem; padding-left: 2px; }
+  .gallery-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+  .gallery-thumb { aspect-ratio: 3/4; background: #EDE4DC; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .gallery-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-    padding-left: 2px;
-  }
-
-  .gallery-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .gallery-thumb {
-    aspect-ratio: 3/4;
-    background: #EDE4DC;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .gallery-thumb img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-
-  .gallery-thumb-placeholder {
-    font-size: 11px;
-    color: var(--text-light);
-    text-align: center;
-    padding: 0.5rem;
-    line-height: 1.4;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    background: var(--warm-white);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 3rem 0;
-    margin-bottom: 0;
-  }
-
-  .contact-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  @media (max-width: 600px) {
-    .contact-inner { grid-template-columns: 1fr; }
-  }
-
-  .contact-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
-  }
-
-  .contact-note {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.6;
-  }
-
+  .contact-section { background: var(--warm-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 0; }
+  .contact-inner { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+  @media (max-width: 600px) { .contact-inner { grid-template-columns: 1fr; } }
+  .contact-heading { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--text-dark); margin-bottom: 0.5rem; }
+  .contact-note { font-size: 14px; color: var(--text-light); line-height: 1.6; }
   .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-row { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .contact-dot { width: 6px; height: 6px; background: var(--rose); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .contact-info-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 2px; }
+  .contact-info-value { font-size: 15px; color: var(--text-dark); font-weight: 400; }
 
-  .contact-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--text-light); letter-spacing: 0.04em; }
 
-  .contact-dot {
-    width: 6px; height: 6px;
-    background: var(--rose);
-    border-radius: 50%;
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
-
-  .contact-info-label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 2px;
-  }
-
-  .contact-info-value {
-    font-size: 15px;
-    color: var(--text-dark);
-    font-weight: 400;
-  }
-
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 12px;
-    color: var(--text-light);
-    letter-spacing: 0.04em;
-  }
-
-  /* FADE IN */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.7s ease forwards;
-  }
+  .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
   .fade-in:nth-child(2) { animation-delay: 0.15s; }
   .fade-in:nth-child(3) { animation-delay: 0.3s; }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -361,16 +88,9 @@
 
     <div class="talent-grid">
 
-      <!-- ISABEL -->
       <div class="talent-card fade-in">
         <div class="photo-slot">
-          <!-- REPLACE THIS COMMENT with: <img src="isabel-main.jpg" alt="Isabel Saenthavisouk"> -->
-          <div class="photo-slot-placeholder">
-            <div class="photo-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </div>
-            <p class="photo-hint">Add Isabel's photo here</p>
-          </div>
+          <img src="isabel-main.jpg" alt="Isabel Saenthavisouk">
         </div>
         <div class="card-body">
           <h2 class="card-name">Isabel</h2>
@@ -384,16 +104,9 @@
         </div>
       </div>
 
-      <!-- EMMA -->
       <div class="talent-card fade-in">
         <div class="photo-slot">
-          <!-- REPLACE THIS COMMENT with: <img src="emma-main.jpg" alt="Emma Saenthavisouk"> -->
-          <div class="photo-slot-placeholder">
-            <div class="photo-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </div>
-            <p class="photo-hint">Add Emma's photo here</p>
-          </div>
+          <img src="emma-main.jpg" alt="Emma Saenthavisouk">
         </div>
         <div class="card-body">
           <h2 class="card-name">Emma</h2>
@@ -409,23 +122,20 @@
 
     </div>
 
-    <!-- GALLERY -->
     <div class="gallery-section">
       <p class="gallery-label">Photo gallery</p>
       <div class="gallery-row">
-        <!-- Add photos by replacing each div with: <div class="gallery-thumb"><img src="photo1.jpg" alt="Isabel"></div> -->
-        <div class="gallery-thumb"><p class="gallery-thumb-placeholder">Add photo</p></div>
-        <div class="gallery-thumb"><p class="gallery-thumb-placeholder">Add photo</p></div>
-        <div class="gallery-thumb"><p class="gallery-thumb-placeholder">Add photo</p></div>
-        <div class="gallery-thumb"><p class="gallery-thumb-placeholder">Add photo</p></div>
-        <div class="gallery-thumb"><p class="gallery-thumb-placeholder">Add photo</p></div>
-        <div class="gallery-thumb"><p class="gallery-thumb-placeholder">Add photo</p></div>
+        <div class="gallery-thumb"><img src="photo1.jpg" alt="Isabel"></div>
+        <div class="gallery-thumb"><img src="photo2.jpg" alt="Emma"></div>
+        <div class="gallery-thumb"><img src="photo3.jpg" alt="Emma at the playground"></div>
+        <div class="gallery-thumb"><img src="photo4.jpg" alt="Isabel and Emma"></div>
+        <div class="gallery-thumb"><img src="photo5.jpg" alt="Isabel and Emma"></div>
+        <div class="gallery-thumb"><img src="photo6.jpg" alt="Isabel and Emma"></div>
       </div>
     </div>
 
   </div>
 
-  <!-- CONTACT -->
   <section class="contact-section">
     <div class="contact-inner">
       <div>
@@ -444,14 +154,14 @@
           <div class="contact-dot"></div>
           <div>
             <p class="contact-info-label">Email</p>
-            <p class="contact-info-value"><!-- ADD YOUR EMAIL --></p>
+            <p class="contact-info-value">maribelr@gmail.com</p>
           </div>
         </div>
         <div class="contact-row">
           <div class="contact-dot"></div>
           <div>
             <p class="contact-info-label">Phone</p>
-            <p class="contact-info-value"><!-- ADD YOUR PHONE --></p>
+            <p class="contact-info-value">801-871-9084</p>
           </div>
         </div>
         <div class="contact-row">
